@@ -1,7 +1,6 @@
 
 package models;
 
-
 import java.io.*;
 import java.nio.file.Paths;
 import java.nio.file.Path;
@@ -35,17 +34,21 @@ public class RandomForest implements Serializable {
         
         //System.out.println(trees); DEBUGING LINE
     }
-
+    
     public int predict(Map<String, Double> input) {
         int sum = 0;
         int n = 0; //DEBUGGING LINE
+        ArrayList<String> predictionList = new ArrayList<String>(); //DEBUGGING LINE
         for (DecisionTree tree : trees) {
-        	System.out.println(tree.predict(input) + " TREE - " +n ); // DEBUGGING LINE
+        	predictionList.add(  " TREE(" +n +") Votes - " +tree.predict(input)) ; // DEBUGGING LINE
             sum += tree.predict(input);
             n++; // DEBUGGING LINE
         }
+     
+        System.out.println(predictionList.toString()); //DEBUGGING LINE
         double result = (double) sum / trees.size();
-        System.out.println(result); //debugger line
+        System.out.printf("%.2f",result); //debugger line
+        System.out.println();
         if (result >= .05 && result < .10)
         	return 2;
         if (result >= .10 )

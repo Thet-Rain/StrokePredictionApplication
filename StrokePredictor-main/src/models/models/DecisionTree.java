@@ -96,7 +96,7 @@ public class DecisionTree implements Serializable {
 
         Node node = new Node();
         node.setFeature(bestFeature);
-        usedFeatures.add(bestFeature);
+        usedFeatures.add(bestFeature); //MAKING SURE same feature doesn't appear again in decision tree no matter what
         node.setThreshold(bestThreshold);
         node.setLeft(buildTree(leftData, currentDepth + 1));
         node.setRight(buildTree(rightData, currentDepth + 1));

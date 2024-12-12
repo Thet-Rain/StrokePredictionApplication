@@ -314,18 +314,18 @@ public class AssessmentPageController {
             	File currentDir = new File(""); //PlaceHolder
             	System.out.println(currentDir.getAbsolutePath());
             	
+            	//DO NOT DELETE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
             	//TRAINING RANDOM FOREST PART! 
 //                // Step 1: Load and preprocess the dataset
-//            	String filePath = currentDir.getAbsolutePath() + "\\src\\models\\models\\stroke-data2.csv";
-//            	System.out.println(filePath);
+//            	  String filePath = currentDir.getAbsolutePath() + "\\src\\models\\models\\stroke-data2.csv";
+//            	  System.out.println(filePath);
 //            		
 //                Dataset dataset = new Dataset(filePath);
 //                dataset.preprocess();
 //
 //                // Step 2: Bootstrap the dataset for Random Forest
 //                int numTrees = 100;
-//                RandomForest randomForest = new RandomForest(numTrees);
-//
+//                RandomForest randomForest = new RandomForest(numTrees);/
 //                randomForest.train(dataset);
 
                 // Step 3: Save the Random Forest
@@ -339,7 +339,7 @@ public class AssessmentPageController {
                 RandomForest loadedForest = RandomForest.loadForest(RFmodelPath);
                 System.out.println("Random Forest model loaded successfully.");
 
-                // Step 5: Predict stroke risk for a test data point
+                // Step 5: Predict stroke risk 
                 Map<String, Double> userData2 = new HashMap<>();
                 userData2.put("age", (double) ageValue);
                 userData2.put("hypertension",(hasHypertension) ? 1.0 : 0.0 );
@@ -347,9 +347,8 @@ public class AssessmentPageController {
                 userData2.put("avg_glucose_level", glucoseValue);
                 userData2.put("bmi", bmiValue);
                 userData2.put("smoking_status", smokingStatusinDouble);
-
+                System.out.println(userData2.toString());
                 int prediction = loadedForest.predict(userData2);
-                System.out.println("Predicted Stroke Risk: " + prediction);
                 switch(prediction) {
                 case 1 :  System.out.println("You have a very low risk. you ok!");
                 			break;
